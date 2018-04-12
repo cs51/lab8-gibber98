@@ -176,8 +176,8 @@ Exercise 5: Register these two news organizations as listeners to the
 newswire event.
 ......................................................................*)
   
- let fnn_id = WEvent.add_listener newswire fakeNewsNetwork ;;
- let bf_id = WEvent.add_listener newswire buzzFake ;;
+ WEvent.add_listener newswire fakeNewsNetwork ;;
+ WEvent.add_listener newswire buzzFake ;;
 
 (* Here are some headlines to play with. *)
 
@@ -185,15 +185,14 @@ let h1 = "the national animal of Eritrea is officially the camel!" ;;
 let h2 = "camels can run in short bursts up to 40mph!" ;;
 let h3 = "bactrian camels can weigh up to 2200lbs!" ;;
 
+let _ = WEvent.fire_event newswire h1;;
 
 (*......................................................................
 Exercise 6: Finally, fire newswire events with the above three
 headlines, and observe what happens!
 ......................................................................*)
   
-let _ = WEvent.fire_event newswire h1;;
-let _ = WEvent.fire_event newswire h2;;
-let _ = WEvent.fire_event newswire h3;;
+(* .. *)
 
 (* Imagine now that you work at Facebook, and you're growing concerned
 with the proliferation of fake news. To combat the problem, you decide
@@ -206,15 +205,14 @@ the publications don't publish right away. *)
 Exercise 7: Remove the newswire listeners that were previously registered.
 ......................................................................*)
 
-let _ = WEvent.remove_listener newswire fnn_id ;;
-let _ = WEvent.remove_listener newswire bf_id ;;
+(* .. *)
 
 (*......................................................................
 Exercise 8: Create a new event called publish to signal that all
 stories should be published. The event should be a unit WEvent.event.
 ......................................................................*)
 
-let publish = WEvent.new_event () ;; 
+let publish = fun _ -> failwith "publish not implemented" ;; 
 
 (*......................................................................
 Exercise 9: Write a function receive_report to handle new news
@@ -225,7 +223,7 @@ by registering appropriate listeners, one for each news network,
 waiting for the publish event.
 ......................................................................*)
 
-let receive_report = ;;
+let receive_report = fun _ -> failwith "report not implemented";;
 
 (*......................................................................
 Exercise 10: Register the receieve_report listener to listen for the
